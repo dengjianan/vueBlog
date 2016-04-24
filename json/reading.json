@@ -1,0 +1,20 @@
+{
+	"items":[{
+		"title": "戒台寺",
+		"date": "January 1, 2014",
+		"content": "戒台寺位于北京市门头沟区的马鞍山上，始建于唐武德五年（公元622年），原名慧聚寺，明朝英宗皇帝赐名为万寿禅寺，因寺内建有全国最大的佛教戒坛，民间通称为戒坛寺，又叫戒台寺。",
+		"tags": ["javascript"]
+		},
+		{
+		"title": "世贸天阶",
+		"date": "January 1, 2014",
+		"content": "世贸天阶位于迎宾国道东大桥路的东侧，紧邻国贸、嘉里中心等众多顶级写字楼以及世贸国际公寓、新城国际等名品公寓，坐镇北京CBD西区门户，已被朝阳区政府定为政府重点工作项目，并成为CBD的旗舰商业。",
+		"tags": ["javascript"]
+		},
+		{
+		"title": "第三篇文章",
+		"date": "January 1, 2014",
+		"content": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+		"label": ["javascript"]
+		}]
+}

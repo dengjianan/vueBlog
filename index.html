@@ -3,69 +3,38 @@
 
 <head>
     <meta charset="utf-8">
-    <title>水晶雨</title>
+    <title>陨落的水晶雨</title>
     <link rel="stylesheet" href="src/assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/assets/blog.css">
 </head>
 
-<body>
-    <div class="blog-masthead">
+<body id="blog">
+    <div id="blogNav" class="blog-masthead">
         <div class="container">
             <nav class="blog-nav">
-                <a class="blog-nav-item active" href="#">健康生活</a>
-                <a class="blog-nav-item" href="#">前端技术交流</a>
-                <a class="blog-nav-item" href="#">读书旅游</a>
+                <a class="blog-nav-item" v-link="{path: '/life',activeClass: 'active'}">健康生活</a>
+                <a class="blog-nav-item" v-link="{path: '/technology',activeClass: 'active'}">前端技术交流</a>
+                <a class="blog-nav-item" v-link="{path: '/reading',activeClass: 'active'}">读书旅游</a>
             </nav>
         </div>
     </div>
     <div class="container">
         <div class="blog-header">
-            <h1 class="blog-title">落月博客</h1>
+            <h1 class="blog-title">陨落的水晶雨</h1>
             <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
         </div>
         <div class="row">
             <div class="col-sm-8">
-                <!-- <div class="blog-post">
-                    <h2 class="blog-post-title">Sample blog post</h2>
-                    <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-                    <h3>Sub-heading</h3>
-                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                    <ul>
-                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                        <li>Donec id elit non mi porta gravida at eget metus.</li>
-                        <li>Nulla vitae elit libero, a pharetra augue.</li>
-                    </ul>
-                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-                    <ol>
-                        <li>Vestibulum id ligula porta felis euismod semper.</li>
-                        <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                        <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-                    </ol>
-                    <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-                </div> -->
+                <!-- 路由外链 -->
+                <router-view></router-view>
             </div>
             <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
                 <div class="sidebar-module sidebar-module-inset">
-                    <h4>About</h4>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <h4>关于我</h4>
+                    <p><em>邓健安 </em> 2009-2016 就读于华北电力大学，现在中国铁塔股份有限公司担任软件开发工程师。欲从事前端开发工作。
+                    </p>
                 </div>
-                <div class="sidebar-module">
-                    <h4>Archives</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">March 2014</a></li>
-                        <li><a href="#">February 2014</a></li>
-                        <li><a href="#">January 2014</a></li>
-                        <li><a href="#">December 2013</a></li>
-                        <li><a href="#">November 2013</a></li>
-                        <li><a href="#">October 2013</a></li>
-                        <li><a href="#">September 2013</a></li>
-                        <li><a href="#">August 2013</a></li>
-                        <li><a href="#">July 2013</a></li>
-                        <li><a href="#">June 2013</a></li>
-                        <li><a href="#">May 2013</a></li>
-                        <li><a href="#">April 2013</a></li>
-                    </ol>
-                </div>
+                <sub-nav></sub-nav>
                 <div class="sidebar-module">
                     <h4>Elsewhere</h4>
                     <ol class="list-unstyled">
