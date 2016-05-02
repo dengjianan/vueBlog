@@ -23,14 +23,56 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+
+/* Nav links */
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+  color: #fff;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
 </style>
 <template>
   <div class="blog-post" v-for="item in items">
-      <h2 class="blog-post-title">{{item.title}}</h2>
-      <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
-      <p class="blog-post-general">{{item.content}}.</p>
-      <p><a href="#">阅读全文</a></p>
-      <p class="blog-post-tags">标签:<a href="#" v-for="tag in item.tags">{{tag}}</a></p>
+    <h2 class="blog-post-title">{{item.title}}</h2>
+    <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
+    <p class="blog-post-general">{{item.body}}.</p>
+    <p><a v-link="{ name: 'life', params: { userId: 123 }}">阅读全文</a></p>
+    <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
   </div>
 </template>
 
@@ -42,8 +84,10 @@ import {getAllItems} from '../services/message'
 Vue.use(Resource)
 Vue.use(Router)
 // configuration vue-resource
-Vue.http.options.root = '/json'
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk'
+Vue.http.options.headers = {
+  'Content-Type': 'application/json; charset=utf-8'
+}
 export default {
   canReuse () {
     return true
@@ -55,7 +99,7 @@ export default {
   },
   route: {
     data (transition) {
-      var url = this.$route.path.substring(1)
+      var url = 'http://localhost:3000/' + this.$route.path.substring(1)
       this.items = getAllItems(this, url)
     }
   }
