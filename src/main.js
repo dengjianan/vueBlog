@@ -5,6 +5,7 @@ var Router = require('vue-router')
 var SubNav = require('./components/subNav.vue')
 var DetailList = require('./components/detailList.vue')
 var ArticleList = require('./components/articleList.vue')
+var ArticleItem = require('./components/articleItem.vue')
 
 // Vue.use(plugin,[options])安装Vue.js插件，如果插件是一个对象,必须有一个
 // install方法。如果它是一个函数，它会被定义为安装方法
@@ -19,25 +20,52 @@ var router = new Router()
 // 创建的组件构造函数，也可以是一个组件选项对象
 router.map({
   '/life': {
+    name: 'life',
     component: ArticleList
   },
   '/life/:year': {
-    name: 'life',
-    component: DetailList
-  },
-  '/life/:year/:month': {
     name: 'life/:year',
     component: DetailList
   },
-  '/life/:year/:month/:title': {
-    name: 'life/:year/:month',
+  '/life/:year/:month': {
+    name: 'life/:month',
     component: DetailList
   },
+  '/life/:year/:month/:title': {
+    name: 'life/:year/:month/:title',
+    component: ArticleItem
+  },
   '/technology': {
+    name: 'technology',
     component: ArticleList
   },
+  '/technology/:year': {
+    name: 'technology/:year',
+    component: DetailList
+  },
+  '/technology/:year/:month': {
+    name: 'technology/:year/:month',
+    component: DetailList
+  },
+  '/technology/:year/:month/:title': {
+    name: 'technology/:year/:month/:title',
+    component: ArticleItem
+  },
   '/reading': {
+    name: 'reading',
     component: ArticleList
+  },
+  '/reading/:year': {
+    name: 'reading/:year',
+    component: DetailList
+  },
+  '/reading/:year/:month': {
+    name: 'reading/:year/:month',
+    component: DetailList
+  },
+  '/reading/:year/:month/:title': {
+    name: 'reading/:year/:month/:title',
+    component: ArticleItem
   }
 })
 router.redirect({
