@@ -13,8 +13,8 @@ export function getAllItems (target, url) {
 
 export function getItem (target, url) {
   target.$http({url: url, method: 'GET'}).then(function (response) {
-    this.item = response.data.item
-  }, function () {
+    this.item = response.data
+  }, function (response) {
     console.log('error')
   })
 }

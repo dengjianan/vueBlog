@@ -2,10 +2,10 @@
 var Vue = require('vue')
 var Router = require('vue-router')
 // 引入自定义组件
-var SubNav = require('./components/subNav.vue')
 var DetailList = require('./components/detailList.vue')
 var ArticleList = require('./components/articleList.vue')
 var ArticleItem = require('./components/articleItem.vue')
+var SubNav = require('./components/subNav.vue')
 
 // Vue.use(plugin,[options])安装Vue.js插件，如果插件是一个对象,必须有一个
 // install方法。如果它是一个函数，它会被定义为安装方法

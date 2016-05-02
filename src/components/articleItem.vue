@@ -19,9 +19,9 @@
 </style>
 <template>
 	<div class="blog-post">
-      <h2 class="blog-post-title">文章标题</h2>
-      <p class="blog-post-meta">文章日期 by <a href="#">deng</a></p>
-      <p class="blog-post-general">文章具体内容</p>
+      <h2 class="blog-post-title">{{item.title}}</h2>
+      <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
+      <p class="blog-post-general">{{item.body}}</p>
   </div>
 </template>
 <script>
@@ -32,21 +32,23 @@ import {getItem} from '../services/message'
 Vue.use(Resource)
 Vue.use(Router)
 // configuration vue-resource
-Vue.http.options.root = '/json'
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk'
+Vue.http.options.headers = {
+  'Content-Type': 'application/json; charset=utf-8'
+}
 export default {
   canReuse () {
     return true
   },
   data () {
     return {
-      items: []
+      item: {}
     }
   },
   route: {
     data (transition) {
-      var url = this.$route.path.substring(1)
-      this.items = getItem(this, url)
+      var url = 'http://localhost:3000/life/2016/4/57261b90b2bccbb011000617'
+      this.item = getItem(this, url)
     }
   }
 }
