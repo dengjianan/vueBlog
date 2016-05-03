@@ -69,9 +69,9 @@
 <template>
   <div class="blog-post" v-for="item in items">
     <h2 class="blog-post-title">{{item.title}}</h2>
-    <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
+    <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
     <p class="blog-post-general">{{item.body}}.</p>
-    <p><a v-link="{ name: 'life', params: { userId: 123 }}">阅读全文</a></p>
+    <p><a v-link="{ name: 'life/:year/:month/:id', params: { year: item.date, month: 04, id: 123 }}">阅读全文</a></p>
     <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
   </div>
 </template>
@@ -83,11 +83,23 @@ import Router from 'vue-router'
 import {getAllItems} from '../services/message'
 Vue.use(Resource)
 Vue.use(Router)
-// configuration vue-resource
+// configuration vue-resource 2015-08-01T15:06:56.000Z
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk'
 Vue.http.options.headers = {
   'Content-Type': 'application/json; charset=utf-8'
 }
+Vue.filter('dateFormate', function (value, type) {
+  var dateArray = value.split('-')
+  switch (type) {
+    // formate to **年**月**日
+    case 'all':
+      return dateArray[0] + '年' + dateArray[1] + '月' + dateArray[2].substr(0, 2) + '日'
+    case 'year':
+      return dateArray[1]
+    default:
+      break
+  }
+})
 export default {
   canReuse () {
     return true

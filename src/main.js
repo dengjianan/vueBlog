@@ -31,8 +31,8 @@ router.map({
     name: 'life/:month',
     component: DetailList
   },
-  '/life/:year/:month/:title': {
-    name: 'life/:year/:month/:title',
+  '/life/:year/:month/:id': {
+    name: 'life/:year/:month/:id',
     component: ArticleItem
   },
   '/technology': {
