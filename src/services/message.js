@@ -3,18 +3,19 @@
  * @param {number} page
  * @return data
 */
-export function getAllItems (target, url) {
-  target.$http({url: url, method: 'GET'}).then(function (response) {
-    this.items = response.data
-  }, function (response) {
-    console.log('error')
-  })
-}
-
-export function getItem (target, url) {
-  target.$http({url: url, method: 'GET'}).then(function (response) {
-    this.item = response.data
-  }, function (response) {
-    console.log('error')
-  })
+export default {
+  getAllItems: function (target, url) {
+    target.$http({url: url, method: 'GET'}).then(function (response) {
+      this.items = response.data
+    }, function (response) {
+      console.log('error')
+    })
+  },
+  getItem: function (target, url) {
+    target.$http({url: url, method: 'GET'}).then(function (response) {
+      this.item = response.data
+    }, function (response) {
+      console.log('error')
+    })
+  }
 }

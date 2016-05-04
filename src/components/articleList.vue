@@ -71,7 +71,7 @@
     <h2 class="blog-post-title">{{item.title}}</h2>
     <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
     <p class="blog-post-general">{{item.body}}.</p>
-    <p><a v-link="{ name: 'life/:year/:month/:id', params: { year: item.date, month: 04, id: 123 }}">阅读全文</a></p>
+    <p><a v-bind:href="'http://localhost:8080/#!/' + item.type +'/2013/04/12'">阅读全文</a></p>
     <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
   </div>
 </template>
@@ -80,10 +80,10 @@
 import Vue from 'vue'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
-import {getAllItems} from '../services/message'
+import services from '../services/message'
 Vue.use(Resource)
 Vue.use(Router)
-// configuration vue-resource 2015-08-01T15:06:56.000Z
+// configuration vue-resource
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk'
 Vue.http.options.headers = {
   'Content-Type': 'application/json; charset=utf-8'
@@ -112,7 +112,7 @@ export default {
   route: {
     data (transition) {
       var url = 'http://localhost:3000/' + this.$route.path.substring(1)
-      this.items = getAllItems(this, url)
+      this.items = services.getAllItems(this, url)
     }
   }
 }
