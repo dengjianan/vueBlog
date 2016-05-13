@@ -67,13 +67,48 @@
 }
 </style>
 <template>
-  <div class="blog-post" v-for="item in items">
-    <h2 class="blog-post-title">{{item.title}}</h2>
-    <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
-    <p class="blog-post-general">{{item.body}}.</p>
-    <p><a v-bind:href="'http://localhost:8080/#!/' + item.type +'/2013/04/12'">阅读全文</a></p>
-    <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
-  </div>
+<div class="container">
+        <div class="blog-header">
+            <p class="lead blog-description">不积跬步无以至千里，不积小流无以成江海</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="blog-post" v-for="item in items">
+                  <h2 class="blog-post-title">{{item.title}}</h2>
+                  <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
+                  <p class="blog-post-general">{{{item.body}}}.</p>
+                  <p><a v-bind:href="'http://localhost:8080/#!/' + item.type +'/2013/04/12'">阅读全文</a></p>
+                  <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+                    <h4>关于我</h4>
+                    <p><em>邓健安 </em> 2009-2016 就读于华北电力大学，现在中国铁塔股份有限公司担任软件开发工程师。欲从事前端开发工作。
+                    </p>
+                </div>
+                <div class="sidebar-module">
+                <h4>Archives</h4>
+                <ol class="list-unstyled">
+                  <li><a v-link="{name:'life',params:{year:2016}}">2016年</a></li>
+                    <li><a v-link="{name:'life/:year',params:{month:1},append:true}">2016年1月</a></li>
+                    <li><a v-link="{name:'life',params:{year:2016,day:3}}">2016年3月</a></li>
+                    <li><a v-link="{name:'life',params:{year:2016,day:4}}">2016年4月</a></li>
+                    <li><a v-link="{name:'life',params:{year:2016,day:5}}">2016年5月</a></li>
+                    <li><a v-link="{name:'life',params:{year:2016,day:1}}">2016年6月</a></li>
+                </ol>
+            </div>
+                <div class="sidebar-module">
+                    <h4>Elsewhere</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="https://github.com/dengjianan" target="_blank">GitHub</a></li>
+                        <li><a href="http://weibo.com/1987018287/profile?topnav=1&wvr=6&is_all=1" target="_blank">microblog</a></li>
+                        <li><a href="https://www.facebook.com/onlydengjianan" target="_blank">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

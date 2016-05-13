@@ -22,7 +22,7 @@
 	<div class="blog-post" v-if="!$loadingRouteData">
       <h2 class="blog-post-title">{{item.title}}</h2>
       <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
-      <p class="blog-post-general">{{item.body}}</p>
+      <p class="blog-post-general">{{{item.body}}}</p>
   </div>
 </template>
 <script>
@@ -70,7 +70,7 @@ export default {
     activate () {
       console.log('activate articleItem')
       return new Promise((resolve) => {
-        var url = 'http://localhost:3000/reading/2016/4/57271a430d49cb34298c146b'
+        var url = 'http://localhost:3000/reading/2016/4/572c93672a58213005694c63'
         this.item = services.getItem(this, url)
         console.log('articleItem is activate')
         resolve()
