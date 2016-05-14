@@ -18,17 +18,18 @@
 }
 </style>
 <template>
-	<div class="blog-post">
+  <div class="blog-post" v-if="$loadingRouteData">loading...</div>
+	<div class="blog-post" v-if="!$loadingRouteData">
       <h2 class="blog-post-title">{{item.title}}</h2>
       <p class="blog-post-meta">{{item.date}} by <a href="#">deng</a></p>
-      <p class="blog-post-general">{{item.body}}</p>
+      <p class="blog-post-general">{{{item.body}}}</p>
   </div>
 </template>
 <script>
 import Vue from 'vue'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
-import {getItem} from '../services/message'
+import services from '../services/message'
 Vue.use(Resource)
 Vue.use(Router)
 // configuration vue-resource
@@ -46,10 +47,45 @@ export default {
     }
   },
   route: {
-    data (transition) {
-      var url = 'http://localhost:3000/life/2016/4/57261b90b2bccbb011000617'
-      this.item = getItem(this, url)
+    // three options
+    // 1.return a boolean
+    // 2.return a promise that resolve to a boolean
+    // 3.explicitly call transition.next() or abort()
+    canActivate (transition) {
+      if (transition.from.path === '/about') {
+        console.log('cant navicate from /about')
+        transition.abort()
+      } else {
+        transition.next()
+      }
+    },
+    // same deal with beforeActicate
+    canDeactivate (transition) {
+      return confirm('Are u sure to leave life')
+    },
+    // activate hook is called when the route is matched
+    // an the component has been created
+    // this hook controls the timing of the component
+    // switching -the switching wont start until this hook is resolve
+    activate () {
+      console.log('activate articleItem')
+      return new Promise((resolve) => {
+        var url = 'http://localhost:3000/reading/2016/4/572c93672a58213005694c63'
+        this.item = services.getItem(this, url)
+        console.log('articleItem is activate')
+        resolve()
+      })
+    },
+    // for doing cleanups
+    // destructing can make hooks cleaner
+    deactivate ({ next }) {
+      console.log('articleItem deactivate')
+      next()
     }
+    // data (transition) {
+    //   var url = 'http://localhost:3000/reading/2016/4/57271a430d49cb34298c146b'
+    //   this.item = services.getItem(this, url)
+    // }
   }
 }
 </script>
