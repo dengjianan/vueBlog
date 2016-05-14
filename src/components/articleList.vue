@@ -71,7 +71,7 @@
     <h2 class="blog-post-title">{{item.title}}</h2>
     <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
     <p class="blog-post-general">{{item.body}}.</p>
-    <p><a v-link="{ name: 'life/:year/:month/:id', params: { year: item.date, month: 04, id: 123 }}">阅读全文</a></p>
+    <p><a v-link="{ name: item.type + '/:year/:month/:id', params: { year: item.date, month: 04, id: 123 }}">阅读全文</a></p>
     <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
   </div>
 </template>
