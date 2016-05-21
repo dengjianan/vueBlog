@@ -6,7 +6,7 @@
 export default {
   getAllItems: function (target, url) {
     target.$http({url: url, method: 'GET'}).then(function (response) {
-      this.items = response.data
+      this.items = response.data.items
     }, function (response) {
       console.log('error')
     })

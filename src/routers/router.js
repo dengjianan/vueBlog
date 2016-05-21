@@ -9,15 +9,15 @@ export function configRouter (router) {
       component: require('../components/articleList.vue')
     },
     '/life/:year': {
-      name: 'life/:year',
+      name: 'life',
       component: require('../components/detailList.vue')
     },
     '/life/:year/:month': {
-      name: 'life/:month',
+      name: 'life',
       component: require('../components/detailList.vue')
     },
     '/life/:year/:month/:id': {
-      name: 'life/:year/:month/:id',
+      name: 'life',
       component: require('../components/articleItem.vue'),
       waitForData: true
     },
@@ -26,15 +26,15 @@ export function configRouter (router) {
       component: require('../components/articleList.vue')
     },
     '/technology/:year': {
-      name: 'technology/:year',
+      name: 'technology',
       component: require('../components/detailList.vue')
     },
     '/technology/:year/:month': {
-      name: 'technology/:year/:month',
+      name: 'technology',
       component: require('../components/detailList.vue')
     },
-    '/technology/:year/:month/:title': {
-      name: 'technology/:year/:month/:title',
+    '/technology/:year/:month/:id': {
+      name: 'technology',
       component: require('../components/articleItem.vue')
     },
     '/reading': {
@@ -42,15 +42,15 @@ export function configRouter (router) {
       component: require('../components/articleList.vue')
     },
     '/reading/:year': {
-      name: 'reading/:year',
+      name: 'reading',
       component: require('../components/detailList.vue')
     },
     '/reading/:year/:month': {
-      name: 'reading/:year/:month',
+      name: 'reading',
       component: require('../components/detailList.vue')
     },
-    '/reading/:year/:month/:title': {
-      name: 'reading/:year/:month/:title',
+    '/reading/:year/:month/:id': {
+      name: 'reading',
       component: require('../components/articleItem.vue')
     }
   })

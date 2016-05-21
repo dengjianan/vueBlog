@@ -69,15 +69,15 @@
 <template>
 <div class="container">
         <div class="blog-header">
-            <p class="lead blog-description">不积跬步无以至千里，不积小流无以成江海</p>
+            <p class="lead blog-description">不积跬步无以至千里 Think big, but start small</p>
         </div>
         <div class="row">
             <div class="col-sm-8">
                 <div class="blog-post" v-for="item in items">
                   <h2 class="blog-post-title">{{item.title}}</h2>
-                  <p class="blog-post-meta">{{item.date|dateFormate 'all'}} by <a href="#">deng</a></p>
-                  <p class="blog-post-general">{{{item.body}}}.</p>
-                  <p><a v-bind:href="'http://localhost:8080/#!/' + item.type +'/2013/04/12'">阅读全文</a></p>
+                  <p class="blog-post-meta">{{item.date|moment "dddd, MMMM Do YYYY"}} by <a href="#">deng</a></p>
+                  <p class="blog-post-general">{{{item.body}}}</p>
+                  <p><a v-on:click="readArticle(item)">阅读全文</a></p>
                   <p class="blog-post-tags">标签:<a href="#" v-for="label in item.labels">{{label}}</a></p>
                 </div>
             </div>
@@ -90,12 +90,9 @@
                 <div class="sidebar-module">
                 <h4>Archives</h4>
                 <ol class="list-unstyled">
-                  <li><a v-link="{name:'life',params:{year:2016}}">2016年</a></li>
-                    <li><a v-link="{name:'life/:year',params:{month:1},append:true}">2016年1月</a></li>
-                    <li><a v-link="{name:'life',params:{year:2016,day:3}}">2016年3月</a></li>
-                    <li><a v-link="{name:'life',params:{year:2016,day:4}}">2016年4月</a></li>
-                    <li><a v-link="{name:'life',params:{year:2016,day:5}}">2016年5月</a></li>
-                    <li><a v-link="{name:'life',params:{year:2016,day:1}}">2016年6月</a></li>
+                  <li v-for="item in items">
+                    <a v-link="">{{item.date|moment "YYYY-MM"}}</a>
+                  </li>
                 </ol>
             </div>
                 <div class="sidebar-module">
@@ -108,7 +105,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -116,8 +113,10 @@ import Vue from 'vue'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
 import services from '../services/message'
+import VueMoment from 'vue-moment'
 Vue.use(Resource)
 Vue.use(Router)
+Vue.use(VueMoment)
 // configuration vue-resource
 Vue.http.headers.common['Authorization'] = 'Basic YXBpOnBhc3N3b3Jk'
 Vue.http.options.headers = {
@@ -144,9 +143,16 @@ export default {
       items: []
     }
   },
+  methods: {
+    readArticle (item) {
+      var dateArray = item.date.split('-')
+      this.$route.router.go({name: item.type, params: { year: dateArray[0], month: dateArray[1], id: item._id}})
+    }
+  },
   route: {
     data (transition) {
-      var url = 'http://localhost:3000/' + this.$route.path.substring(1)
+      var baseUrl = 'http://localhost:3000/'
+      var url = baseUrl + this.$route.path.substring(1)
       this.items = services.getAllItems(this, url)
     }
   }
